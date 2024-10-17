@@ -1,1 +1,112 @@
 <h1>hello w@r world</h1>
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Адаптивний макет з Tailwind CSS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-blue': '#3b82f6',
+                        'custom-gray': '#f3f4f6',
+                    },
+                    fontFamily: {
+                        'custom': ['Roboto', 'sans-serif'],
+                    },
+                    fontSize: {
+                        'xxs': '0.65rem',
+                    },
+                    screens: {
+                        'xs': '475px',
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-custom bg-custom-gray">
+    <!-- Навігаційне меню -->
+    <header class="bg-white shadow-md">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-2xl font-bold text-custom-blue">ЛОГО</div>
+            <ul class="hidden md:flex space-x-4">
+                <li><a href="#" class="text-gray-600 hover:text-custom-blue">Тема 1</a></li>
+                <li><a href="#" class="text-gray-600 hover:text-custom-blue">Тема 2</a></li>
+                <li><a href="#" class="text-gray-600 hover:text-custom-blue">Тема 3</a></li>
+                <li><a href="#" class="text-gray-600 hover:text-custom-blue">Тема 4</a></li>
+            </ul>
+            <button class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Основний контент -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Секція 1 -->
+            <section class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-bold mb-4 text-custom-blue">Секція 1</h2>
+                <img src="https://i.ytimg.com/vi/piFZvpMe_K8/mqdefault.jpg">
+                <p class="text-gray-600 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <button class="bg-custom-blue text-white px-4 py-2 rounded hover:bg-blue-600 transition">Дізнатись більше</button>
+            </section>
+
+            <!-- Секція 2 -->
+            <section class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-bold mb-4 text-custom-blue">Секція 2</h2>
+                <img src="https://i.ytimg.com/vi/piFZvpMe_K8/mqdefault.jpg">
+                <p class="text-gray-600 mb-4">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <button class="bg-custom-blue text-white px-4 py-2 rounded hover:bg-blue-600 transition">Детальніше</button>
+            </section>
+
+
+            <!-- Секція 3 -->
+            <section class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-bold mb-4 text-custom-blue">Секція 3</h2>
+                <img src="https://i.ytimg.com/vi/piFZvpMe_K8/mqdefault.jpg">
+                <p class="text-gray-600 mb-4">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <button class="bg-custom-blue text-white px-4 py-2 rounded hover:bg-blue-600 transition">Замовити</button>
+            </section>
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="bg-gray-800 text-white mt-18">
+        <div class="container mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-2">Про нас</h3>
+                    <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-2">Контакти</h3>
+                    <p class="text-sm">Електронна пошта: info@example.com</p>
+                    <p class="text-sm">Телефон: +380 123 456 789</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-2">Слідкуйте за нами</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-custom-blue">Facebook</a>
+                        <a href="#" class="text-white hover:text-custom-blue">Twitter</a>
+                        <a href="#" class="text-white hover:text-custom-blue">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-xxs">
+                &copy; 2024 Ваша Компанія. Усі права захищені.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
