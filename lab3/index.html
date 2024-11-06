@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Триколонковий макет</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+
+    <!-- Header -->
+    <header class="bg-blue-500 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-lg font-bold">Логотип</div>
+            <nav class="space-x-4">
+                <a href="#" class="hover:underline">Тема 1</a>
+                <a href="#" class="hover:underline">Тема 2</a>
+                <a href="#" class="hover:underline">Тема 3</a>
+                <a href="#" class="hover:underline">Тема 4</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="container mx-auto mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Shopping List Form -->
+        <section class="bg-white p-6 rounded-lg shadow-lg col-span-1">
+            <h2 class="text-xl font-semibold mb-4">Додати покупку</h2>
+            <form id="shoppingForm">
+                <div class="mb-4">
+                    <label class="block text-gray-700">Назва покупки:</label>
+                    <input type="text" id="itemName" class="w-full p-2 border rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Вартість:</label>
+                    <input type="number" id="itemPrice" class="w-full p-2 border rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Категорія:</label>
+                    <select id="itemCategory" class="w-full p-2 border rounded">
+                        <option value="food">Їжа</option>
+                        <option value="clothes">Одяг</option>
+                        <option value="electronics">Електроніка</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded">Додати</button>
+            </form>
+        </section>
+
+        <!-- Shopping List Display -->
+        <section class="bg-white p-6 rounded-lg shadow-lg col-span-2">
+            <h2 class="text-xl font-semibold mb-4">Список покупок</h2>
+            <div id="shoppingList" class="space-y-4"></div>
+            <div class="mt-6 p-4 bg-gray-100 rounded-lg">
+                <p>Кількість покупок: <span id="itemCount">0</span></p>
+                <p>Загальна вартість: <span id="totalCost">0</span> грн</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const shoppingForm = document.getElementById('shoppingForm');
+        const shoppingList = document.getElementById('shoppingList');
+        const itemCount = document.getElementById('itemCount');
+        const totalCost = document.getElementById('totalCost');
+
+        let items = [];
+        const categoryImages = {
+            food: 'https://via.placeholder.com/50?text=Food',
+            clothes: 'https://via.placeholder.com/50?text=Clothes',
+            electronics: 'https://via.placeholder.com/50?text=Electronics'
+        };
+
+        shoppingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('itemName').value;
+            const price = parseFloat(document.getElementById('itemPrice').value);
+            const category = document.getElementById('itemCategory').value;
+
+            const item = { name, price, category };
+            items.push(item);
+
+            renderList();
+            shoppingForm.reset();
+        });
+
+        function renderList() {
+            shoppingList.innerHTML = '';
+            let total = 0;
+
+            items.forEach((item, index) => {
+                total += item.price;
+
+                const itemBlock = document.createElement('div');
+                itemBlock.classList = 'flex justify-between items-center p-2 border rounded';
+
+                const itemInfo = document.createElement('div');
+                itemInfo.innerHTML = `
+                    <img src="${categoryImages[item.category]}" alt="${item.category}" class="w-12 h-12 inline mr-4">
+                    <span>${item.name} - ${item.price} грн</span>
+                `;
+                itemBlock.appendChild(itemInfo);
+
+                const deleteButton = document.createElement('button');
+                deleteButton.classList = 'text-red-500';
+                deleteButton.textContent = 'Видалити';
+                deleteButton.addEventListener('click', () => {
+                    items.splice(index, 1);
+                    renderList();
+                });
+                itemBlock.appendChild(deleteButton);
+
+                shoppingList.appendChild(itemBlock);
+            });
+
+            itemCount.textContent = items.length;
+            totalCost.textContent = total.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>
