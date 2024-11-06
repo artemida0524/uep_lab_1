@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Tasks</title>
+</head>
+<body>
+    <h1>JavaScript Tasks</h1>
+    <script>
+        // 1. Immediately Invoked Function Expression (IIFE)
+        (function() {
+            console.log("Browser language:", window.navigator.language || window.clientInformation.language);
+        })();
+
+        // 2. Array Methods: map, filter, reduce
+        const numbers = [5, 15, 25, 35, 45, 55, 65, 75, 85, 95];
+
+        // a. Map to create a new array with each number doubled
+        const doubledNumbers = numbers.map(num => num * 2);
+        console.log("Doubled Numbers:", doubledNumbers);
+
+        // b. Filter to create a new array with numbers greater than 40
+        const filteredNumbers = numbers.filter(num => num > 40);
+        console.log("Numbers greater than 40:", filteredNumbers);
+
+        // c. Reduce to sum all elements in the array
+        const sumOfNumbers = numbers.reduce((acc, num) => acc + num, 0);
+        console.log("Sum of Numbers:", sumOfNumbers);
+
+        // 3. Rest Parameters in a function
+        function sumAll(...args) {
+            return args.reduce((acc, num) => acc + num, 0);
+        }
+        console.log("Sum of all arguments (10, 20, 30):", sumAll(10, 20, 30));
+        console.log("Sum of all arguments (5, 15, 25, 35, 45):", sumAll(5, 15, 25, 35, 45));
+
+        // 4. Working with Map
+        const studentScores = new Map([
+            ["John", 85],
+            ["Alice", 92],
+            ["Bob", 76],
+            ["Diana", 88]
+        ]);
+
+        console.log("Student Scores:");
+        for (const [name, score] of studentScores) {
+            console.log(`${name}: ${score}`);
+        }
+
+        // 5. Changing Function Context with call and apply
+        const person = {
+            firstName: "Ivan",
+            lastName: "Petrenko"
+        };
+
+        function greet() {
+            console.log(`Hello, ${this.firstName} ${this.lastName}!`);
+        }
+
+        // Using call
+        greet.call(person);
+
+        // Using apply
+        greet.apply({ firstName: "Anna", lastName: "Shevchenko" });
+
+        // 6. Creating a Closure Function
+        function createCounterWithStart(startValue) {
+            let count = startValue;
+            return function() {
+                count++;
+                console.log("Counter:", count);
+            };
+        }
+
+        const counterFrom5 = createCounterWithStart(5);
+        counterFrom5(); // Output: Counter: 6
+        counterFrom5(); // Output: Counter: 7
+        counterFrom5(); // Output: Counter: 8
+
+        const counterFrom10 = createCounterWithStart(10);
+        counterFrom10(); // Output: Counter: 11
+        counterFrom10(); // Output: Counter: 12
+    </script>
+</body>
+</html>
